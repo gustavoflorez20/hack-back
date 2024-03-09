@@ -15,7 +15,7 @@ app.use("/articles", articleRouter);
 app.post("/new", articleRouter);
 
 app.listen(PORT, () => {
-  console.log("Rulandooooo server");
+  console.log("Rulandooooo server", {PORT});
 });
 
 //connect to MongoDb
