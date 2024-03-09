@@ -3,19 +3,24 @@ const Article = require("../models/Article");
 const articleController = {
   getAllPosts: async (req, res) => {
     try {
-      // query vacia devolemos todos los posts
+      // obtenemos el texto por query
       const articleText = req.query.text;
 
-      let filters = {};
+      // Verificamos si el articleText tiene al menos tres caracteres alfabéticos
+      const regex = '/^[a-zA-Z]{3,}$/g';
 
-      if (Object.keys(articleText).length > 0) {
-        if (articleText.text) filters.text = articleText.text;
+      if (!regex.test(articleText)) {
+        return res.status(400).send("La consulta debe contener al menos tres caracteres alfabéticos.");
       }
 
-      const article = await Article.find(filter);
-      return res.json(article);
-      // comprobar la query con la expresion de mas de tres caracteres
-      // ir mostrando los articulos que coincidan en la base de datos
+      // Devolvemos los que coinciden con el article text
+      const articles = await Article.find({ title: { $regex: new RegExp(searchText, 'i') } });
+
+      if (articles.length === 0) {
+        return res.status(404).send("No se encontraron artículos con el texto proporcionado.");
+      }
+
+      res.status(200).json(articles);
     } catch (error) {
       res.status(500).send("Unable to find posts");
     }
