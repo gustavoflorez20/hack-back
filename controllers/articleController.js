@@ -2,7 +2,9 @@ const Article = require("../models/Article");
 
 const articleController = {
   getAll: async (req, res) => {
+    const articleList = await Article.find()
     try {
+      res.send(articleList);
     } catch (error) {}
   },
 };
