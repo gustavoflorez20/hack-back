@@ -17,7 +17,14 @@ const articleController = {
       const limit = req.query.limit;
 
       const articles = await Article.find({
-        text: new RegExp(".{3,}" + articleText + ".*"),
+        $or: [
+          {
+            title: new RegExp(".{3,}" + articleText + ".*"),
+          },
+          {
+            text: new RegExp(".{3,}" + articleText + ".*"),
+          },
+        ],
       })
         .skip((page - 1) * limit)
         .limit(limit);
