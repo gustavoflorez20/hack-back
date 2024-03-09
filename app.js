@@ -10,9 +10,9 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
-app.use("/articles", articleRouter);
+app.use("/", articleRouter)
 
-app.post("/new", articleRouter);
+
 
 app.listen(PORT, () => {
   console.log("Rulandooooo server", {PORT});

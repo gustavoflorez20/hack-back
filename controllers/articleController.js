@@ -29,6 +29,14 @@ const articleController = {
   getAll: async (req, res) => {
     const articleList = await Article.find()
     try {
+
+      
+      res.json({ articles });
+    } catch (error) {
+      console.error('Error al obtener todos los artículos:', error.message);
+      res.status(500).json({ error: 'Error interno del servidor' });
+    }
+
       res.send(articleList);
     } catch (error) {}
   },
@@ -36,8 +44,6 @@ const articleController = {
     try {
       console.log('Creando Artículo:');
       const articleData = req.body;
-
-      
 
       const articlesToBeAdded = articleData.map((data) => new Article({
         Titulo: data.title,
@@ -60,6 +66,18 @@ const articleController = {
 }
 
 
+    try {
+      const article = await Article.findById(_idController);
+      if (!article) {
+        return res.status(404).json({ error: 'Artículo no encontrado' });
+      }
+
+      res.json({ article });
+    } catch (error) {
+      console.error('Error al buscar el artículo por _id:', error.message);
+      res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  },
+};
+
 module.exports = articleController;
-
-
