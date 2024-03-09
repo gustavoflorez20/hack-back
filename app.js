@@ -2,17 +2,20 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const articleRouter = require("./routes/articleRouter");
+const  articleRouter  = require("./routes/articleRouter");
+
 
 const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/", articleRouter);
+app.use("/articles", articleRouter);
+
+app.post("/new", articleRouter);
 
 app.listen(PORT, () => {
-  console.log("Rulandooooo server");
+  console.log("Rulandooooo server", {PORT});
 });
 
 //connect to MongoDb
