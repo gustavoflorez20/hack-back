@@ -1,0 +1,11 @@
+{
+  "name": "hack_b",
+  "version": "1.0.0",
+  "description": "hack_b",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
