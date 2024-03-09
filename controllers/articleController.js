@@ -7,7 +7,7 @@ const articleController = {
   },
 };
 
-async function addArticle(req, res) {
+async function addArticlecontroller(req, res) {
   try {
     console.log('Creando Artículo:');
     const articleData = req.body;
@@ -37,7 +37,7 @@ async function addArticle(req, res) {
 
 module.exports = {
   articleController,
-  addArticle,
+  addArticlecontroller
 };
 
 

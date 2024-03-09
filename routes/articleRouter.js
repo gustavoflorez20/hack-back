@@ -1,11 +1,11 @@
 const express = require("express");
-const {articleController,addArticle } = require("../controllers/articleController");
+const {articleController,addArticlecontroller } = require("../controllers/articleController");
 
 const router = express.Router();
 
 
 router.get("/", articleController.getAll);
-router.post ("/new", addArticle)
+router.post ("/new", addArticlecontroller)
 
 
 module.exports = router;
