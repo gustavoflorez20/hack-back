@@ -1,9 +1,13 @@
-// const Article = require("../models/Article");
+const Article = require("../models/Article");
 
 const articleController = {
-  getAll: async (req, res) => {
+  getAllPosts: async (req, res) => {
     try {
-    } catch (error) {}
+      const article = await Article.find();
+      return res.json(article);
+    } catch (error) {
+      res.status(500).send("Unable to find posts");
+    }
   },
 };
 
