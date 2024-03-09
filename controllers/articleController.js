@@ -2,13 +2,19 @@ const Article = require("../models/Article");
 
 const articleController = {
   getAll: async (req, res) => {
+    const articleList = await Article.find()
     try {
-      const articles = await Article.find();
+
+      
       res.json({ articles });
     } catch (error) {
       console.error('Error al obtener todos los artículos:', error.message);
       res.status(500).json({ error: 'Error interno del servidor' });
     }
+=======
+      res.send(articleList);
+    } catch (error) {}
+
   },
 
   addArticlecontroller: async (req, res) => {
