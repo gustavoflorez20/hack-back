@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const articleRouter = require("./routes/articleRouter");
+const {articleRouter , addArticle } = require("./routes/articleRouter");
+const { addArticle } = require("./controllers/articleController");
 
 const PORT = process.env.PORT;
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/", articleRouter);
+app.use ("/new",addArticle)
 
 app.listen(PORT, () => {
   console.log("Rulandooooo server");
