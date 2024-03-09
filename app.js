@@ -9,9 +9,9 @@ const port = 3001;
 app.use(express.json());
 app.use(cors());
 
-app.use("/articles", articleRouter);
+app.use("/", articleRouter)
 
-app.post("/new", articleRouter);
+
 
 app.listen(port, () => {
   console.log("Rulandooooo server");
