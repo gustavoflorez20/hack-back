@@ -4,17 +4,29 @@ const articleController = {
   getAll: async (req, res) => {
     const articleList = await Article.find()
     try {
-
-      
-      res.json({ articles });
+      const articles = await Article.find();
+      res.json(articles);
     } catch (error) {
-      console.error('Error al obtener todos los artículos:', error.message);
-      res.status(500).json({ error: 'Error interno del servidor' });
+      console.log(error);
+      res.status(500).send("Unable to find articles");
     }
-=======
-      res.send(articleList);
-    } catch (error) {}
+  },
+  getAllPosts: async (req, res) => {
+    try {
+      const articleText = req.query.text;
+      const page = req.query.page;
+      const limit = req.query.limit;
 
+      const articles = await Article.find({
+        text: new RegExp(".{3,}" + articleText + ".*"),
+      })
+        .skip((page - 1) * limit)
+        .limit(limit);
+
+      res.status(200).json(articles);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Unable to find posts");
   },
 
   addArticlecontroller: async (req, res) => {
